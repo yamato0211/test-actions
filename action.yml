@@ -50,7 +50,7 @@ runs:
               git cat-file -p BASE:${file_path} > before.txt
               git cat-file -p HEAD:${file_path} > after.txt
 
-              response=$(python .github/workflows/reviewModified.py "${file_path}" "before.txt" "after.txt")
+              response=$(python reviewModified.py "${file_path}" "before.txt" "after.txt")
               echo "${response}" > _body.txt
 
               gh pr comment --body-file _body.txt "${URL}"
@@ -59,7 +59,7 @@ runs:
 
               git cat-file -p HEAD:${file_path} > code.txt
 
-              response=$(python .github/workflows/reviewAdded.py "${file_path}" "code.txt")
+              response=$(python reviewAdded.py "${file_path}" "code.txt")
               echo "${response}" > _body.txt
 
               gh pr comment --body-file _body.txt "${URL}"
